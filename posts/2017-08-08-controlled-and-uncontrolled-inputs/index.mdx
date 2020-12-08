@@ -1,19 +1,14 @@
-export const meta = {
-  title: "Controlled and uncontrolled inputs",
-  subtitle: "Understand the difference and peculiarities of each one",
-  image: require("./images/controlled-input.png"),
-  author: "renatorib",
-  tags: ["javascript", "react"],
-  outdated: true
-};
-
-# Controlled and uncontrolled inputs
+---
+title: Controlled and uncontrolled inputs
+subtitle: Understand the difference and peculiarities of each one
+author: renatorib
+tags: javascript, react
+outdated: true
+---
 
 If you have been using React for some time, or even if you are a beginner, you probably have seen this **error** around:
 
-<p align="center">
-  <img src={require("./images/error.png")} />
-</p>
+<img src="controlled-input.png" align="center" />
 
 But after all, what is this controlled input and uncontrolled input?
 
@@ -23,7 +18,7 @@ In summary, it is even redundant to say, but, the uncontrolled input is when he 
 
 ```js
 class App extends React.Component {
-  handleInputRef = input => {
+  handleInputRef = (input) => {
     this.input = input;
   };
 
@@ -51,10 +46,10 @@ Since we know that the controlled input is the opposite, it is easy to guess tha
 ```js
 class App extends React.Component {
   state = {
-    name: ""
+    name: "",
   };
 
-  handleInputChange = event => {
+  handleInputChange = (event) => {
     this.setState({ name: event.target.name });
   };
 
@@ -82,9 +77,7 @@ Pay attention to what happens in the example above:
 
 **3.** After re-rendering, the value of the input will be "replenished" with the value I saved in the state because the input is bound: `<input value={this.state.name} />`
 
-<p align="center">
-  <img src={require("./images/controlled-input.png")} />
-</p>
+<img src="controlled-input.png" align="center" />
 
 In short, you have the impression that the input is acting in the same way as in the previous case of uncontrolled input, but in reality what happens behind it is different. The input sends the new value to the state, and the state causes the component to render the input again with its new value. **It does not change himself** (uncontrolled), it orders the state to change its own value.
 
@@ -106,18 +99,14 @@ const Component = () => (
 
 I just won't be able to change its value because React understands that input value should be “Renato”, and by default, React identifies that **when an input is mounted with a predefined value, this is a controlled input**. So now it is only updated if the value changes by the code. But value is a string, it will never change. It's why we need the state to change the value to us.
 
-<p align="center">
-  <img src={require("./images/dummy.png")} />
-</p>
+<img src="dummy.png" align="center" />
 
 ## Back to the initial error
 
 Now that we know the difference, what about that damn mistake? Why does it happen?
 Now it's a little easier to understand.
 
-<p align="center">
-  <img src={require("./images/whats-wrong.png")} />
-</p>
+<img src="whats-wrong.png" align="center" />
 
 The error most often happens because of React's typechecking, and not because of the literal practice of changing an input from "uncontrolled" to "controlled".
 

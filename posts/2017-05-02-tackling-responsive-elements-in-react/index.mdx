@@ -1,12 +1,10 @@
-export const meta = {
-  title: "Tackling responsive elements in React",
-  subtitle: "...and why I’ve created React Sizes",
-  author: "renatorib",
-  tags: ["javascript", "react"],
-  outdated: true
-};
-
-# Tackling responsive elements in React
+---
+title: Tackling responsive elements in React
+subtitle: ...and why I’ve created React Sizes
+author: renatorib
+tags: javascript, react
+outdated: true
+---
 
 In the “perfect world of responsiveness” you can do 90% of things only by adding percentage widths, using flexbox, adding media queries to change grid dimensions, etc. But in the real world, sometimes we need to use two or more completely different structures to adapt to devices.
 
@@ -84,7 +82,7 @@ Adding a resize listener to window may help you to deal with that:
 ```jsx
 class MyComponent extends React.Component {
   state = {
-    isMobile: false
+    isMobile: false,
   };
 
   handleWindowResize = () => {
@@ -119,7 +117,7 @@ Remember, with great power comes great responsibility.
 
 Dealing with window resize callback can be dangerous, especially when you mess with props and/or state, that **updates** your component. If you don’t treat the callback, it could provoke **hundreds of unnecessary renders** by a simple resize movement, and this is the most common mistake when someone try to do something like this.
 
-<img src={require("./images/ops.gif")} />
+<img src="ops.gif" align="center" />
 
 ## Performance optimizations.
 
@@ -137,7 +135,7 @@ import throttle from "lodash.throttle";
 
 class MyComponent extends React.Component {
   state = {
-    isMobile: false
+    isMobile: false,
   };
 
   throttledHandleWindowResize = () => {
@@ -192,9 +190,9 @@ export sizes(mapSizesToProps)(MyComponent);
 As you can see, you just need to create a `mapSizesToProps` function that receives a object with `width` and `height`.
 
 ```jsx
-const mapSizesToProps = sizes => ({
+const mapSizesToProps = (sizes) => ({
   width: sizes.width,
-  height: sizes.height
+  height: sizes.height,
 });
 ```
 

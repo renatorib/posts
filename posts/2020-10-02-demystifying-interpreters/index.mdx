@@ -1,13 +1,9 @@
-import Lexer from "./demos/Lexer";
-
-export const meta = {
-  title: "Demystifying interpreters",
-  subtitle: "A friendly introduction on what's and how's",
-  author: "renatorib",
-  tags: ["tutorial", "javascript"]
-};
-
-# Demystifying interpreters
+---
+title: Demystifying interpreters
+subtitle: A friendly introduction on what's and how's
+author: renatorib
+tags: tutorial, javascript
+---
 
 Before I started writing this article, my knowledge of languages was summarized in: "I have no idea how this stuff works". And whenever I searched for a basic notion I felt I was reading Greek, I thought everything was magical, mystical. So if you don't understand anything about it either, I know exactly how you feel.
 
@@ -27,9 +23,7 @@ This is the first step of our interpreter, and is also known as "tokenizer", "sc
 
 Think of a token as a "useful" piece of our entry. It can be a number, a parenthesis, an operator. In more complete languages it can be a keyword, a variable, among others. At the beginning we only have a sequence of characters, which apparently do not mean anything, but at the end that piece of string that had 1 and then 0 was actually a token number of value 10. In our interpreter we will discard all empty spaces. All other characters will be part of the token, as in the example below:
 
-<p align="center">
-  <img src={require("./images/tokens-1.png")} />
-</p>
+<img src="tokens-1.png" align="center" />
 
 Lexer's job is just the separation of tokens, it doesn't care if the syntax is broken (for example, if you have a parenthesis without closing, it won't care). Lexical errors are usually an unknown character. If I run 1 % 1, it will have no knowledge of what this % character is, and then, lexer should throw a lexical error.
 
@@ -44,7 +38,7 @@ We will represent a token as an object that has type and value properties (for l
   { type: "Plus" },
   { type: "Number", value: 5 },
   { type: "RightParen" },
-  { type: "End" }
+  { type: "End" },
 ];
 ```
 
@@ -83,7 +77,7 @@ const lexer = (input /*: string */) => {
 See an example of a lexer running step-by-step by clicking in next:  
 (tip: you can edit the expression in the top input)
 
-<Lexer />
+`<Lexer />`
 
 To better understand the pointer, I explain: the string behaves very similar to an array in terms of indexes and iteration. We were able to access a character from the string by passing its position. That way, each time the pointer is incremented, we can read the next character in the string and apply the logic we want.
 
@@ -105,7 +99,7 @@ input[pointer]; // input[2] -> '*'
 Whitespaces are essential for writing readable code, and in many cases they also have a syntactic role. In our case, they will just be ignored. So when our lexer finds a whitespace, it just goes on:
 
 ```js{8-14}{focus}
-const lexer = input => {
+const lexer = (input) => {
   let tokens = [];
   let pointer = 0;
 
@@ -130,7 +124,7 @@ const lexer = input => {
 Most of the tokens that we will use are of only one character (`*`, `+`, `(`, `)`, etc), so they are the simplest to parse, since it is not necessary to look at the front characters, only the current one within the iteration:
 
 ```js{13-18}{focus}
-const lexer = input => {
+const lexer = (input) => {
   let tokens = [];
   let pointer = 0;
 
@@ -157,7 +151,7 @@ const lexer = input => {
 After repeating the process with all the other tokens, we will have something like:
 
 ```js{8-47}{focus}
-const lexer = input => {
+const lexer = (input) => {
   let tokens = [];
   let pointer = 0;
 
@@ -219,7 +213,7 @@ There are tokens formed by more than one character, and in most languages this g
 To cover this scenario, as soon as we find the first character of number, we will observe its next characters and go grouping as long as they remain numbers, and when we find any character that is not what we are looking for, we cancel the process and save the token with the final grouping.
 
 ```js{10-27}
-const lexer = input => {
+const lexer = (input) => {
   let tokens = [];
   let pointer = 0;
 
@@ -256,7 +250,7 @@ At the end of it, we add a token to indicate the end of our expression and retur
 We have our lexer:
 
 ```js
-const lexer = input => {
+const lexer = (input) => {
   let tokens = [];
   let pointer = 0;
 
@@ -337,15 +331,11 @@ A particularity of the expressions that makes it more complex to solve is the **
 
 Your already knows that you need to solve multiplication first, then solve the sum. And you get the result easily. Our parser will also need to know this, and the best way to represent precedence is using trees:
 
-<p align="center">
-  <img src={require("./images/tree-1.png")} />
-</p>
+<img src="tree-1.png" align="center" />
 
 When disassembling our expression, and assembling our tree, we start with the operators with the lowest precedence (in this case, the `+`), so that the operators with the highest prevalence (`*`) are at the end. For it is from the bottom up that we will solve our tree:
 
-<p align="center">
-  <img src={require("./images/tree-2.png")} />
-</p>
+<img src="tree-2.png" align="center" />
 
 ### Recursive Descent Parser
 
@@ -401,9 +391,7 @@ The rules when used in the definitions are called `nonterminals`, as they are no
 
 In our grammar, nonterminals are represented in lower case (`expr`, `add`, `mul`, `num`), while the terminals are represented in upper case (`PLUS`, `STAR`, `NUMBER`).
 
-<p align="center">
-  <img src={require("./images/grammar.png")} />
-</p>
+<img src="grammar.png" align="center" />
 
 As in regular expressions, parentheses are used for grouping, and the asterisk is used to say that that value (or grouping, in our case) **can be repeated 0 or more times**.
 
@@ -423,7 +411,7 @@ As you can see, our `(STAR num)` representation are repeated zero or more times
 I know very well that just from theory, things are difficult to understand. I suffered for it. So let's start coding our parser based on the assumption that we only have addition and multiplication, for simplicity, and then we'll add the other operators.
 
 ```js
-const parser = tokens => {
+const parser = (tokens) => {
   let pointer = 0;
 
   // ...
@@ -433,12 +421,12 @@ const parser = tokens => {
 We started with the same premise as Lexer. We will use a pointer to cycle through tokens, but unlike lexer, we will create some support functions so that our parser is not so confused:
 
 ```js{4-12}{focus}
-const parser = tokens => {
+const parser = (tokens) => {
   let pointer = 0;
 
   const peek = () => tokens[pointer];
   const prev = () => tokens[pointer - 1];
-  const match = type => {
+  const match = (type) => {
     if (peek().type === type) {
       pointer++;
       return true;
@@ -457,12 +445,12 @@ From here we can already build our recursive functions from the rules of our gra
 Our `expr` rule is really as simple as the notation demonstrates: it returns the execution of `add` function that does not exist yet.
 
 ```js{14-17}{focus}
-const parser = tokens => {
+const parser = (tokens) => {
   let pointer = 0;
 
   const peek = () => tokens[pointer];
   const prev = () => tokens[pointer - 1];
-  const match = type => {
+  const match = (type) => {
     if (peek().type === type) {
       pointer++;
       return true;
@@ -480,12 +468,12 @@ const parser = tokens => {
 The `add` function rule will return a result that starts with `mul`, and as long as it finds the `PLUS` token, it will add to the next `mul`. The while here represents the asterisk of the notation very well.
 
 ```js{18-30}{focus}
-const parser = tokens => {
+const parser = (tokens) => {
   let pointer = 0;
 
   const peek = () => tokens[pointer];
   const prev = () => tokens[pointer - 1];
-  const match = type => {
+  const match = (type) => {
     if (peek().type === type) {
       pointer++;
       return true;
@@ -516,12 +504,12 @@ const parser = tokens => {
 The `mul` rule is identical to the add, but now it will use the num with the `STAR` operator.
 
 ```js{27-39}{focus}
-const parser = tokens => {
+const parser = (tokens) => {
   let pointer = 0;
 
   const peek = () => tokens[pointer];
   const prev = () => tokens[pointer - 1];
-  const match = type => {
+  const match = (type) => {
     if (peek().type === type) {
       pointer++;
       return true;
@@ -561,12 +549,12 @@ const parser = tokens => {
 Finally our last rule. Since `NUMBER` is a terminal we have to ensure that it is the `Number` token, and return its token value, terminal in fact. And as it is the last rule of our parser, if it arrived here and it is not a `Number`, then we have a syntax error because it was not captured by any of our grammatical rules (for example 5 + \* 3). For this we will throw a `Error`.
 
 ```js{37-46}{focus}
-const parser = tokens => {
+const parser = (tokens) => {
   let pointer = 0;
 
   const peek = () => tokens[pointer];
   const prev = () => tokens[pointer - 1];
-  const match = type => {
+  const match = (type) => {
     if (peek().type === type) {
       pointer++;
       return true;
@@ -619,12 +607,12 @@ return expr();
 ...and the recursion does everything else:
 
 ```js
-const parser = tokens => {
+const parser = (tokens) => {
   let pointer = 0;
 
   const peek = () => tokens[pointer];
   const prev = () => tokens[pointer - 1];
-  const match = type => {
+  const match = (type) => {
     if (peek().type === type) {
       pointer++;
       return true;
@@ -735,9 +723,7 @@ const mul = () => {
 
 So far we only deal with binary operators, that is, when the operator needs two values to generate a result. However, there are operators that are unary, such as the negative number (-5) and the positive number (+5). Although the tokens are the same, they cannot be confused with subtraction and addition. Unary operations have a higher precedence than binary ones.
 
-<p align="center">
-  <img src={require("./images/unary-operators.png")} />
-</p>
+<img src="unary-operators.png" align="center" />
 
 Knowing this, we will add the unaries rule `(PLUS | MINUS)` number to our grammar.
 
@@ -851,21 +837,15 @@ The idea is quite simple, when finding a `LEFTPAREN`, we save a result with the 
 
 If you remember, at the beginning of this topic of Syntax Analysis, I said that we would build our AST. But where is it? I skipped that part. Instead, we used the parser to interpret the code directly, something like this:
 
-<p align="center">
-  <img src={require("./images/ast-1.png")} />
-</p>
+<img src="ast-1.png" align="center" />
 
 I did this in order to better explain how the recursive descent parser works, without having to go into the details of AST. But the ideal is that we get to this:
 
-<p align="center">
-  <img src={require("./images/ast-2.png")} />
-</p>
+<img src="ast-2.png" align="center" />
 
 But then you ask me: if we have already reached the final result, which was the result, why do we still need to go through AST? Well, in fact, if that was the only goal, we could simplify things and end here. But AST has a fundamental role in the third stage, the semantic analysis stage. And with AST we can not only calculate the final result of the expression, but do many other things.
 
-<p align="center">
-  <img src={require("./images/ast-3.png")} />
-</p>
+<img src="ast-3.png" align="center" />
 
 But after all, what is AST? Okay, I know it's an abstract syntax tree, but, what does that mean? We know that a tree is a data structure, usually chained and represented by several nodes.
 Roughly speaking, we will take an expression and transform it into an object that represents this expression, as in this example:
@@ -915,9 +895,7 @@ To:
 }
 ```
 
-<p align="center">
-  <img src={require("./images/ast-nodes-1.png")} />
-</p>
+<img src="ast-nodes-1.png" align="center" />
 
 #### Nodes
 
@@ -1036,7 +1014,7 @@ Previously we had already reached the final value of our expression by calculati
 We will build a function that will visit each node, much like what a [visitor pattern](https://en.wikipedia.org/wiki/Visitor_pattern) does, but much more simplistic and less flexible, for now.
 
 ```js
-const interpreter = ast => {
+const interpreter = (ast) => {
   // defines the visitors of each node
   const visitors = {
     LiteralNode() {
@@ -1047,11 +1025,11 @@ const interpreter = ast => {
     },
     UnaryOpNode() {
       /* ... */
-    }
+    },
   };
 
   // execute the visitor corresponding to the node
-  const visit = node => {
+  const visit = (node) => {
     if (visitors[node.type]) {
       return visitors[node.type](node, visit);
     }
@@ -1072,7 +1050,7 @@ We start with `LiteralNode`, which is the simplest of nodes, since it represents
 const visitors = {
   LiteralNode(node) {
     return node.token.value;
-  }
+  },
 };
 ```
 
@@ -1100,7 +1078,7 @@ const visitors = {
     if (node.token.type === "Slash") {
       return leftVal / rightVal;
     }
-  }
+  },
 };
 ```
 
@@ -1119,7 +1097,7 @@ const visitors = {
     if (node.token.type === "Minus") {
       return -exprVal;
     }
-  }
+  },
 };
 ```
 
