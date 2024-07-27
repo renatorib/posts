@@ -12,7 +12,7 @@
 ###### [<kbd>![renatorib](https://avatars.githubusercontent.com/u/3277185?s=10)</kbd> **@renatorib**](https://github.com/renatorib) · **Jul 26, 2024**
 
 
-### [The Override type](https://rena.to/blog/the-override-type)
+### [The `Override` Type](https://rena.to/blog/the-override-type)
 *Understanding and comparing it vs. intersect*
 
 [<kbd>Read more →</kbd>](https://rena.to/blog/the-override-type)
