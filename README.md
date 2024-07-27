@@ -1,4 +1,4 @@
-<sup align="right">
+<sup>
 
 [Github](https://github.com/renatorib) ‎ ‎‎  ‎  [Twitter](https://twitter.com/renatoribz?utm_source=rena.to) ‎ ‎ ‎‎  [Dribbble](https://dribbble.com/renatorib?utm_source=rena.to)
 
