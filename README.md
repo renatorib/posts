@@ -9,7 +9,7 @@
 
 <br />
 
-###### [<kbd>![renatorib](https://avatars.githubusercontent.com/u/3277185?s=10)</kbd> **renatorib**](/renatorib) · **Jul 26, 2024**
+###### [<kbd>![renatorib](https://avatars.githubusercontent.com/u/3277185?s=10)</kbd> **@renatorib**](https://github.com/renatorib) · **Jul 26, 2024**
 
 
 ### [The Override type](https://rena.to/blog/the-override-type)
@@ -19,7 +19,7 @@
 
 #
 
-###### [<kbd>![renatorib](https://avatars.githubusercontent.com/u/3277185?s=10)</kbd> **renatorib**](/renatorib) · **Jan 24, 2023**
+###### [<kbd>![renatorib](https://avatars.githubusercontent.com/u/3277185?s=10)</kbd> **renatorib**](https://github.com/renatorib) · **Jan 24, 2023**
 
 <img src="https://user-images.githubusercontent.com/3277185/218145140-98519188-bea6-4f05-ab53-85339fbb3752.png" width="110px" align="right" />
 
@@ -30,7 +30,7 @@
 
 #
 
-###### [<kbd>![renatorib](https://avatars.githubusercontent.com/u/3277185?s=10)</kbd> **renatorib**](/renatorib) · **Aug 03, 2022**
+###### [<kbd>![renatorib](https://avatars.githubusercontent.com/u/3277185?s=10)</kbd> **renatorib**](https://github.com/renatorib) · **Aug 03, 2022**
 
 <img src="https://user-images.githubusercontent.com/3277185/217987721-5b407d33-12eb-492f-8b8c-9771078b68f3.png" width="110px" align="right" />
 
