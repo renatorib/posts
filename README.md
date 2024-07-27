@@ -10,9 +10,10 @@
 <br />
 
 ###### [<kbd>![renatorib](https://avatars.githubusercontent.com/u/3277185?s=10)</kbd> **renatorib**](/renatorib) · **Jul 26, 2024**
-### The Override type
 
-Understanding and comparing it vs. intersect
+
+### [The Override type](https://rena.to/blog/the-override-type)
+*Understanding and comparing it vs. intersect*
 
 [<kbd>Read more →</kbd>](https://rena.to/blog/the-override-type)
 
@@ -22,8 +23,8 @@ Understanding and comparing it vs. intersect
 
 <img src="https://user-images.githubusercontent.com/3277185/218145140-98519188-bea6-4f05-ab53-85339fbb3752.png" width="110px" align="right" />
 
-### Demystifying bundlers
-A friendly introduction to whats and hows  
+### [Demystifying bundlers](https://rena.to/blog/demystifying-bundlers)
+*A friendly introduction to whats and hows*
 
 [<kbd>Read more →</kbd>](https://rena.to/blog/demystifying-bundlers)
 
@@ -33,8 +34,8 @@ A friendly introduction to whats and hows
 
 <img src="https://user-images.githubusercontent.com/3277185/217987721-5b407d33-12eb-492f-8b8c-9771078b68f3.png" width="110px" align="right" />
 
-### GraphQL in TypeScript over the years  
-How things have changed and still can change
+### [GraphQL in TypeScript over the years](https://rena.to/blog/graphql-in-typescript-over-the-years)
+*How things have changed and still can change*
 
 [<kbd>Read more →</kbd>](https://rena.to/blog/graphql-in-typescript-over-the-years)
 
