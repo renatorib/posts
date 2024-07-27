@@ -5,6 +5,7 @@
 </sup>
 
 
+
 # Renato Ribeiro's blog
 
 <img alt="space" src="https://github.com/user-attachments/assets/9e4f8878-aaed-4661-b6af-a126699888f7" width="5px" />
@@ -14,7 +15,7 @@
 
 Understanding and comparing it vs. intersect
 
-[Read more](https://rena.to/blog/the-override-type)  →
+[Read more](https://rena.to/blog/the-override-type) →
 
 #
 
